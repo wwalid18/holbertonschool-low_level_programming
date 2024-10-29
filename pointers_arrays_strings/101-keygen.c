@@ -7,9 +7,10 @@
 int main(void)
 {
 char password[PASSWORD_LENGTH + 1];
+int i;
 const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_+=<>?";
 srand(time(NULL));
-for (int i = 0; i < PASSWORD_LENGTH; i++)
+for (i = 0; i < PASSWORD_LENGTH; i++)
 {
 password[i] = charset[rand() % (sizeof(charset) - 1)];
 }
