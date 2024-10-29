@@ -40,5 +40,5 @@ i++;
 }
 if (!started)
 return (0);
-return (sign * num);
+return (sign *num);
 }
