@@ -10,11 +10,15 @@ char *duplicate;
 unsigned int len, i;
 
 if (str == NULL)
+{
 return (NULL);
+}
 len = strlen(str);
 duplicate = (char *)malloc(sizeof(char) * (len + 1));
 if (duplicate == NULL)
+{
 return (NULL);
+}
 for (i = 0; i < len; i++)
 {
 duplicate[i] = str[i];
