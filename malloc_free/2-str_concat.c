@@ -1,13 +1,10 @@
 #include "main.h"
 
 /**
- * str_concat - Concatenates two strings.
- * @s1: The first string.
- * @s2: The second string.
- *
- * Return: A pointer to the newly allocated string containing
- *         the contents of s1 followed by the contents of s2,
- *         or NULL if memory allocation fails.
+ * str_concat - duplicate a string
+ * @s1 : The string to duplicate
+ * @s2 :The string to duplicate
+ * Return: A pointer to the duplicated string.
  */
 char *str_concat(char *s1, char *s2)
 {
