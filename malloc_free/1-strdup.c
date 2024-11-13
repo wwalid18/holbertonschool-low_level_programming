@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
 #include "main.h"
-
 /**
  * _strdup - Returns a pointer to a newly allocated space in memory,
  * @str: The string to duplicate.
@@ -11,6 +8,7 @@ char *_strdup(char *str)
 {
 char *duplicate;
 unsigned int len, i;
+
 if (str == NULL)
 return (NULL);
 len = strlen(str);
