@@ -13,7 +13,12 @@ if (str == NULL)
 {
 return (NULL);
 }
-len = strlen(str);
+len = 0;
+while (str[len] != '\0')
+{
+len++;
+}
+
 duplicate = (char *)malloc(sizeof(char) * (len + 1));
 if (duplicate == NULL)
 {
