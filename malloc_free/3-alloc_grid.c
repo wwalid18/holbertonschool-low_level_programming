@@ -11,6 +11,7 @@ int **alloc_grid(int w, int h)
 {
 int **matrice;
 int i;
+int j;
 if (w <= 0 || h <= 0)
 return (NULL);
 matrice = malloc(h * sizeof(int *));
@@ -18,7 +19,15 @@ if (matrice == NULL)
 return (NULL);
 for (i = 0; i < h; i++)
 {
-matrice[i] = calloc(w, sizeof(int));
+matrice[i] = malloc(w * sizeof(int));
+if (matrice[i] == NULL)
+{
+return (NULL);
+}
+for (j = 0; j < w; j++)
+{
+matrice[i][j] = 0;
+}
 if (matrice[i] == NULL)
 {
 while (i >= 0)
