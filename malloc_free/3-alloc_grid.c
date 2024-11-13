@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <cstddef>
 
 /**
  * alloc_grid - Allocates a 2D array of integers and initializes elements to 0.
