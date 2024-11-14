@@ -10,6 +10,10 @@
 void free_grid(int **matrice, int h)
 {
 int i;
+if (matrice == NULL || h <= 0)
+{
+return;
+}
 for (i = 0; i < h; i++)
 {
 free(matrice[i]);
