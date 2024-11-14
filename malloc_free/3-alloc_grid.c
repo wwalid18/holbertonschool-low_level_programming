@@ -13,30 +13,29 @@ int **matrice;
 int i;
 int j;
 if (w <= 0 || h <= 0)
+{
 return (NULL);
+}
 matrice = (int **)malloc(h * sizeof(int *));
 if (matrice == NULL)
+{
 return (NULL);
+}
 for (i = 0; i < h; i++)
 {
 matrice[i] = (int *)malloc(w * sizeof(int));
 if (matrice[i] == NULL)
 {
+for (j = 0; j < i; j++)
+{
+free(matrice[j]);
+}
+free(matrice);
 return (NULL);
 }
 for (j = 0; j < w; j++)
 {
 matrice[i][j] = 0;
-}
-if (matrice[i] == NULL)
-{
-while (i >= 0)
-{
-free(matrice[i]);
-i--;
-}
-free(matrice);
-return (NULL);
 }
 }
 return (matrice);
