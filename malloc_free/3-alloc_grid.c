@@ -14,12 +14,12 @@ int i;
 int j;
 if (w <= 0 || h <= 0)
 return (NULL);
-matrice = malloc(h * sizeof(int *));
+matrice = (int **)malloc(h * sizeof(int *));
 if (matrice == NULL)
 return (NULL);
 for (i = 0; i < h; i++)
 {
-matrice[i] = malloc(w * sizeof(int));
+matrice[i] = (int *)malloc(w * sizeof(int));
 if (matrice[i] == NULL)
 {
 return (NULL);
