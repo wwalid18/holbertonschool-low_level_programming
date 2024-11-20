@@ -83,9 +83,6 @@ printf("%f", f);
 void print_string(va_list args)
 {
 char *str = va_arg(args, char *);
-if (str == NULL)
-print_nil_string();
-else
 printf("%s", str);
 }
 /**
