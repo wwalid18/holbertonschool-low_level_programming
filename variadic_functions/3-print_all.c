@@ -1,15 +1,14 @@
 #include "variadic_functions.h"
 
 /**
- * print_all - Prints numbers.
- * @format: Format of arguments passed to the function.
- * Return: Prints the arguments entered.
+ * print_all - Prints anything based on the format string.
+ * @format: A list of types of arguments passed to the function.
  */
 void print_all(const char * const format, ...)
 {
 va_list args;
 unsigned int i = 0;
-char *s;
+char *str;
 char c;
 int num;
 float f;
@@ -33,11 +32,11 @@ f = va_arg(args, double);
 printf("%f", f);
 break;
 case 's':
-s = va_arg(args, char *);
-if (s == NULL)
+str = va_arg(args, char *);
+if (str == NULL)
 printf("(nil)");
 else
-printf("%s", s);
+printf("%s", str);
 break;
 default:
 break;
