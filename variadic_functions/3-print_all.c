@@ -1,53 +1,38 @@
 #include "variadic_functions.h"
 
-typedef struct print_func
-{
-char specifier;
-void (*print)(va_list args);
-} print_func;
-
-void print_char(va_list args);
-void print_int(va_list args);
-void print_float(va_list args);
-void print_string(va_list args);
-void print_nil_string(void);
-
-print_func print_funcs[] = {
-{'c', print_char},
-{'i', print_int},
-{'f', print_float},
-{'s', print_string}
-};
-
 /**
  * print_all - Prints anything based on the format string.
  * @format: A list of types of arguments passed to the function.
  */
 void print_all(const char * const format, ...)
 {
+print_func key[] = {
+{print_char, 'c'},
+{print_int, 'i'},
+{print_float, 'f'},
+{print_string, 's'}
+};
+const char *ptr = format;
 va_list args;
-unsigned int i = 0, j;
-int printed = 0;
+int keyind = 0, notfirst = 0;
 va_start(args, format);
-while (format && format[i])
+while (format && *ptr)
 {
-j = 0;
-while (j < sizeof(print_funcs) / sizeof(print_funcs[0]))
+if (key[keyind].spec == *ptr)
 {
-if (format[i] == print_funcs[j].specifier)
-{
-if (printed)
+if (notfirst)
 printf(", ");
-print_funcs[j].print(args);
-printed = 1;
-break;
+notfirst = 1;
+key[keyind].print(args);
+ptr++;
+keyind = -1;
 }
-j++;
+keyind++;
+ptr += keyind / 4;
+keyind %= 4;
 }
-i++;
-}
-va_end(args);
 printf("\n");
+va_end(args);
 }
 /**
  * print_char - Function to print a character.
@@ -82,14 +67,11 @@ printf("%f", f);
  */
 void print_string(va_list args)
 {
-char *str = va_arg(args, char *);
-printf("%s", str);
-}
-/**
- * print_nil_string - Function to print "(nil)" for NULL strings.
- * @args: A list of types of arguments passed to the function.
- */
-void print_nil_string(void)
+char *str = va_arg(args, char*);
+while (str != NULL)
 {
+printf("%s", str);
+return;
+}
 printf("(nil)");
 }
