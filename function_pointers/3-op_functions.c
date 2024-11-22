@@ -12,6 +12,7 @@ int r;
 r = a + b;
 return (r);
 }
+
 /**
  * op_sub - calc the difference of a and b.
  * @a: int 1.
@@ -24,6 +25,7 @@ int r;
 r = a - b;
 return (r);
 }
+
 /**
  * op_mul - calc the product of a and b.
  * @a: int 1.
@@ -36,6 +38,7 @@ int r;
 r = a * b;
 return (r);
 }
+
 /**
  * op_div - calc the result of the division of a by b.
  * @a: int 1.
@@ -45,13 +48,10 @@ return (r);
 int op_div(int a, int b)
 {
 int r;
-if (b == 0)
-{
-return (0);
-}
 r = a / b;
 return (r);
 }
+
 /**
  * op_mod - calc the remainder of the division of a by b.
  * @a: int 1.
@@ -61,10 +61,6 @@ return (r);
 int op_mod(int a, int b)
 {
 int r;
-if (b == 0)
-{
-return (0);
-}
 r = a % b;
 return (r);
 }
