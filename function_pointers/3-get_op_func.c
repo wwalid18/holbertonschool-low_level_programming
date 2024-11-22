@@ -1,4 +1,4 @@
-#include "calc.h"
+#include "3-calc.h"
 
 /**
  * get_op_func - make simple mathematics.
@@ -16,7 +16,7 @@ op_t ops[] = {
 {"%", op_mod},
 {NULL, NULL}
 };
-int i;
+int i = 0;
 while (ops[i].op != NULL)
 {
 if (*s == *(ops[i].op))
