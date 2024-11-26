@@ -6,7 +6,7 @@
  */
 void print_all(const char * const format, ...)
 {
-print_func key[4] = {
+print_func key[] = {
 {print_char, 'c'},
 {print_int, 'i'},
 {print_float, 'f'},
