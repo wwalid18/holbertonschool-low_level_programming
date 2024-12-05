@@ -17,8 +17,8 @@ new_node = malloc(sizeof(list_t));
 new_node->str = str2;
 if (str == NULL)
 {
-return (NULL);
 free(new_node);
+return (NULL);
 }
 str2 = strdup(str);
 while (str[len2])
