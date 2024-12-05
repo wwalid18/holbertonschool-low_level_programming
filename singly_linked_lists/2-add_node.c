@@ -23,10 +23,7 @@ return (NULL);
 str2 = strdup(str);
 while (str[len2])
 len2++;
-new_node = malloc(sizeof(list_t));
-new_node->str = str2;
 new_node->len = len2;
-new_node->str = str2;
 new_node->next = *head;
 *head = new_node;
 return (new_node);
