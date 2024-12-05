@@ -20,7 +20,6 @@ if (str == NULL)
 free(new_node);
 return (NULL);
 }
-str2 = strdup(str);
 while (str[len2])
 len2++;
 new_node->len = len2;
