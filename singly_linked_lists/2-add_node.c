@@ -13,12 +13,18 @@ list_t *new_node;
 char *str2;
 unsigned int len2 = 0;
 str2 = strdup(str);
+new_node = malloc(sizeof(list_t));
+new_node->str = str2;
 if (str == NULL)
+{
 return (NULL);
+free(new_node);
+}
 str2 = strdup(str);
 while (str[len2])
 len2++;
 new_node = malloc(sizeof(list_t));
+new_node->str = str2;
 new_node->len = len2;
 new_node->str = str2;
 new_node->next = *head;
