@@ -12,18 +12,6 @@
 #define BUF_SIZE 1024
 
 /**
- * print_fd_error - Prints an error message to the standard error
- * @msg: The message to print
- * @fd_value: The file name or descriptor causing the error
- * @exit_code: The exit code to return
- */
-void print_fd_error(const char *msg, int fd_value, int exit_code)
-{
-	dprintf(STDERR_FILENO, msg, fd_value);
-	exit(exit_code);
-}
-
-/**
  * print_error - Prints an error message to the standard error
  * @msg: The message to print
  * @arg: The file name or descriptor causing the error
