@@ -25,6 +25,18 @@ void print_error(const char *msg, const char *arg, int exit_code)
 }
 
 /**
+ * print_error_int - Prints an error message to the standard error
+ * @msg: The message to print
+ * @arg: The file name or descriptor causing the error
+ * @exit_code: The exit code to return
+ */
+void print_error_int(const char *msg, int arg, int exit_code)
+{
+	dprintf(STDERR_FILENO, msg, arg);
+	exit(exit_code);
+}
+
+/**
  * main - Copies the content of one file to another
  * @argc: The number of arguments
  * @argv: The arguments passed
@@ -66,9 +78,9 @@ int main(int argc, char **argv)
 		print_error("Error: Can't read from file %s\n", argv[1], 98);
 	}
 	if (close(fd_from) == -1)
-		print_error("Error: Can't close fd %d\n", argv[1], 100);
+		print_error_int("Error: Can't close fd %d\n", fd_from, 100);
 	if (close(fd_to) == -1)
-		print_error("Error: Can't close fd %d\n", argv[2], 100);
+		print_error_int("Error: Can't close fd %d\n", fd_to, 100);
 	return (0);
 }
 
