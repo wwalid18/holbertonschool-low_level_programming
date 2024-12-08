@@ -46,6 +46,7 @@ int main(int argc, char **argv)
 {
 	int fd_from, fd_to, nread;
 	char buffer[BUF_SIZE];
+	ssize_t nread, bw;
 
 	if (argc != 3)
 		print_name_error("Usage: cp file_from file_to\n", NULL, 97);
@@ -58,7 +59,8 @@ int main(int argc, char **argv)
 		print_name_error("Error: Can't write to file %s\n", argv[2], 99);
 	while ((nread = read(fd_from, buffer, sizeof(buffer))) > 0)
 	{
-		if (write(fd_to, buffer, nread) != nread)
+		bw = write(fd_to, buffer, nread);
+		if (bw == -1)
 			print_name_error("Error: Can't write to file %s\n", argv[2], 99);
 	}
 	if (nread == -1)
