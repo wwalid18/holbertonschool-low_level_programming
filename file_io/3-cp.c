@@ -44,7 +44,7 @@ void print_name_error(const char *msg, const char *file_value, int exit_code)
  */
 int main(int argc, char **argv)
 {
-	int fd_from, fd_to, nread;
+	int fd_from, fd_to;
 	char buffer[BUF_SIZE];
 	ssize_t nread, bw;
 
