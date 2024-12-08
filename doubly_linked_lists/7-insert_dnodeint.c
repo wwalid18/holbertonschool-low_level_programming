@@ -21,9 +21,9 @@ unsigned int i = 0;
 		node = node->next;
 		i++;
 	}
-	if (node == NULL || (node->next == NULL && i < idx - 1))
+	if (node == NULL)
 		return (NULL);
-	if (node->next == NULL)
+	if (node->next == NULL && i == idx - 1)
 		return (add_dnodeint_end(h, n));
 	new = malloc(sizeof(dlistint_t));
 	if (new == NULL)
