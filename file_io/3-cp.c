@@ -45,10 +45,9 @@ void print_error_int(const char *msg, int arg, int exit_code)
  */
 int main(int argc, char **argv)
 {
-	int fd_from, fd_to;
-	char buffer[BUF_SIZE];
-	ssize_t nread, bw;
-
+int fd_from, fd_to;
+char buffer[BUF_SIZE];
+ssize_t nread, bw;
 	if (argc != 3)
 		print_error("Usage: cp file_from file_to\n", NULL, 97);
 	fd_from = open(argv[1], O_RDONLY);
@@ -61,21 +60,26 @@ int main(int argc, char **argv)
 		close(fd_from);
 		print_error("Error: Can't write to %s\n", argv[2], 99);
 	}
-	while ((nread = read(fd_from, buffer, sizeof(buffer))) > 0)
-	{
-		bw = write(fd_to, buffer, nread);
-		if (bw == -1)
-		{
-			close(fd_from);
-			close(fd_to);
-			print_error("Error: Can't write to %s\n", argv[2], 99);
-		}
-	}
+	nread = read(fd_from, buffer, sizeof(buffer));
 	if (nread == -1)
 	{
 		close(fd_from);
 		close(fd_to);
 		print_error("Error: Can't read from file %s\n", argv[1], 98);
+	}
+	else if (nread > 0)
+	{
+		while (nread > 0)
+		{
+			bw = write(fd_to, buffer, nread);
+			if (bw == -1)
+			{
+				close(fd_from);
+				close(fd_to);
+				print_error("Error: Can't write to %s\n", argv[2], 99);
+			}
+			nread = read(fd_from, buffer, sizeof(buffer));
+		}
 	}
 	if (close(fd_from) == -1)
 		print_error_int("Error: Can't close fd %i\n", fd_from, 100);
@@ -83,4 +87,3 @@ int main(int argc, char **argv)
 		print_error_int("Error: Can't close fd %i\n", fd_to, 100);
 	return (0);
 }
-
