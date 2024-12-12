@@ -53,23 +53,15 @@ ssize_t nread, bw;
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
 		print_error("Error: Can't read from file %s\n", argv[1], 98);
-
+	umask(0000);
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
 		close(fd_from);
 		print_error("Error: Can't write to %s\n", argv[2], 99);
 	}
-	nread = read(fd_from, buffer, sizeof(buffer));
-	if (nread == -1)
-	{
-		close(fd_from);
-		close(fd_to);
-		print_error("Error: Can't read from file %s\n", argv[1], 98);
-	}
-	else if (nread > 0)
-	{
-		while (nread > 0)
+
+		while ((nread = read(fd_from, buffer, sizeof(buffer))) > 0)
 		{
 			bw = write(fd_to, buffer, nread);
 			if (bw == -1)
@@ -78,8 +70,13 @@ ssize_t nread, bw;
 				close(fd_to);
 				print_error("Error: Can't write to %s\n", argv[2], 99);
 			}
-			nread = read(fd_from, buffer, sizeof(buffer));
-		}}
+		}
+	if (nread == -1)
+	{
+		close(fd_from);
+		close(fd_to);
+		print_error("Error: Can't read from file %s\n", argv[1], 98);
+	}
 	if (close(fd_from) == -1)
 		print_error_int("Error: Can't close fd %i\n", fd_from, 100);
 	if (close(fd_to) == -1)
